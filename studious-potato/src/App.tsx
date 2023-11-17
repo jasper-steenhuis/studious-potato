@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 const ListInput = () =>{
   const [inputString, setInput] = useState("");
-  const [taskList, setTaskList] = useState([]);
+  const [taskList, setTaskList] = useState([{}]);
   const handleChange = (e) =>{
     e.preventDefault();
     setInput(e.target.value);
@@ -21,13 +21,6 @@ const ListInput = () =>{
           <li>{task.title}</li>
         )}
         </ul>
-    </div>
-  );
-}
-const List = () =>{
-  return(
-    <div>
-      
     </div>
   );
 }
