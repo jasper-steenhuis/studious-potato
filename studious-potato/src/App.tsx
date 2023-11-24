@@ -11,14 +11,16 @@ type task ={
 
 const ListInput = () =>{
   const [inputString, setInput] = useState("");
-  let [taskList, setTaskList] = useState<task>();
+  let [taskList, setTaskList] = useState<task[]>([]);
+  let [index, setIndex] = useState(0);
   const handleChange = (e) =>{
     e.preventDefault();
     setInput(e.target.value);
   }
-  let id=0;
+  
   const handleSubmit = (e) =>{
-    let newTask: task = {id: id, title: inputString, completed: false};
+    setIndex(index=>index+1);
+    let newTask: task = {id: index , title: inputString, completed: false};
     setTaskList([newTask, ...taskList]);
     e.preventDefault();
     setInput("");
@@ -30,7 +32,7 @@ const ListInput = () =>{
         <button onClick={handleSubmit}>Add</button>
         <ul>  
               {taskList?.map(task => 
-                <li>task.title</li>)}
+                <li>{task.title}</li>)}
         </ul>
     </div>
   );
