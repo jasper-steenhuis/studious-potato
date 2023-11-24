@@ -1,25 +1,36 @@
 import React from "react";
 import { useState } from "react";
+
+type task ={
+  id: number,
+  title: string,
+  completed?: boolean;
+};
+
+
+
 const ListInput = () =>{
   const [inputString, setInput] = useState("");
-  const [taskList, setTaskList] = useState([{}]);
+  let [taskList, setTaskList] = useState<task>();
   const handleChange = (e) =>{
     e.preventDefault();
     setInput(e.target.value);
   }
+  let id=0;
   const handleSubmit = (e) =>{
-    setTaskList([{title: inputString}, ...taskList ]);
+    let newTask: task = {id: id, title: inputString, completed: false};
+    setTaskList([newTask, ...taskList]);
     e.preventDefault();
     setInput("");
   }
+  
   return (
     <div>
-        <input type="text" name="taskInput" placeholder="Enter taskname" onChange={handleChange}/>
+        <input type="text" name="taskInput" value={inputString} placeholder="Enter taskname" onChange={handleChange}/>
         <button onClick={handleSubmit}>Add</button>
         <ul>  
-        {taskList.map(task => 
-          <li>{task.title}</li>
-        )}
+              {taskList?.map(task => 
+                <li>task.title</li>)}
         </ul>
     </div>
   );
