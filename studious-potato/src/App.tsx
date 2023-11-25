@@ -25,14 +25,25 @@ const ListInput = () =>{
     e.preventDefault();
     setInput("");
   }
+  const completeTask = (taskId, value) => {
+    const nextTaskList = [...taskList];
+    const task = nextTaskList.find(t => t.id === taskId);
+    setTaskList(nextTaskList);
+  }
   
   return (
     <div>
         <input type="text" name="taskInput" value={inputString} placeholder="Enter taskname" onChange={handleChange}/>
         <button onClick={addTask}>Add</button>
         <ul>  
-              {taskList?.map(task => 
-                <li>{task.title}<button onClick={() => {setTaskList(taskList.filter(t => t.id !== task.id))}}>delete</button></li>)}
+              {taskList.map(task => 
+                <li>
+                  <p style={{
+                    textDecorationLine: task.completed ? 'line-through' : 'none'
+                  }}>{task.title} {task.completed}</p>
+                  <button onClick={() => {setTaskList(taskList.filter(t => t.id !== task.id))}}>delete</button>
+                  <button onClick={() => {completeTask(task.id, true)}}>complete</button>
+                </li>)}
         </ul>
     </div>
   );
