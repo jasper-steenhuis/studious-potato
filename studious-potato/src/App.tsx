@@ -18,7 +18,7 @@ const ListInput = () =>{
     setInput(e.target.value);
   }
   
-  const handleSubmit = (e) =>{
+  const addTask = (e) =>{
     setIndex(index=>index+1);
     let newTask: task = {id: index , title: inputString, completed: false};
     setTaskList([newTask, ...taskList]);
@@ -29,10 +29,10 @@ const ListInput = () =>{
   return (
     <div>
         <input type="text" name="taskInput" value={inputString} placeholder="Enter taskname" onChange={handleChange}/>
-        <button onClick={handleSubmit}>Add</button>
+        <button onClick={addTask}>Add</button>
         <ul>  
               {taskList?.map(task => 
-                <li>{task.title}</li>)}
+                <li>{task.title}<button onClick={() => {setTaskList(taskList.filter(t => t.id !== task.id))}}>delete</button></li>)}
         </ul>
     </div>
   );
