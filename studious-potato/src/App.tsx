@@ -4,7 +4,7 @@ import { useState } from "react";
 type task ={
   id: number,
   title: string,
-  completed?: boolean;
+  completed: boolean;
 };
 
 
@@ -27,7 +27,7 @@ const ListInput = () =>{
   }
   const completeTask = (taskId, value) => {
     const nextTaskList = [...taskList];
-    const task = nextTaskList.find(t => t.id === taskId);
+    const task = nextTaskList.find(t => {if(t.id === taskId){ t.completed = !t.completed; console.log(t.completed)}});
     setTaskList(nextTaskList);
   }
   
