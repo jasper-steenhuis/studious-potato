@@ -25,12 +25,15 @@ const ListInput = () =>{
     e.preventDefault();
     setInput("");
   }
-  const completeTask = (taskId, value) => {
-    const nextTaskList = [...taskList];
-    const task = nextTaskList.find(t => {if(t.id === taskId){ t.completed = !t.completed; console.log(t.completed)}});
-    setTaskList(nextTaskList);
-  }
+ const completeTask = (taskId, value) => {
+  const nextTaskList = [...taskList];
+  const taskIndex = nextTaskList.findIndex((task) => task.id === taskId);
+  const task = nextTaskList.splice(taskIndex, 1)[0];
   
+  nextTaskList.push(task);
+  setTaskList(nextTaskList);
+};
+
   return (
     <div>
         <input type="text" name="taskInput" value={inputString} placeholder="Enter taskname" onChange={handleChange}/>
