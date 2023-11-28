@@ -25,14 +25,14 @@ const ListInput = () =>{
     e.preventDefault();
     setInput("");
   }
- const completeTask = (taskId, value) => {
-  const nextTaskList = [...taskList];
-  const taskIndex = nextTaskList.findIndex((task) => task.id === taskId);
-  const task = nextTaskList.splice(taskIndex, 1)[0];
-  
-  nextTaskList.push(task);
-  setTaskList(nextTaskList);
-};
+  const completeTask = (task => {
+    const list = [...taskList];
+    const taks = list.find(t => t.id === task.id);
+    if(taks !== undefined){
+      taks.completed = !taks.completed;
+    }
+    setTaskList(list);
+  })
 
   return (
     <div>
@@ -45,7 +45,7 @@ const ListInput = () =>{
                     textDecorationLine: task.completed ? 'line-through' : 'none'
                   }}>{task.title} {task.completed}</p>
                   <button onClick={() => {setTaskList(taskList.filter(t => t.id !== task.id))}}>delete</button>
-                  <button onClick={() => {completeTask(task.id, true)}}>complete</button>
+                  <button onClick={() => {completeTask(task)}}>complete</button>
                 </li>)}
         </ul>
     </div>
