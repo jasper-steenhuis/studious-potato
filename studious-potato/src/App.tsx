@@ -29,9 +29,11 @@ const ListInput = () =>{
     const list = [...taskList];
     const taks = list.find(t => t.id === task.id);
     if(taks !== undefined){
+      const taskIndex = list.findIndex(t=> t.id === taks.id);
       taks.completed = !taks.completed;
+      list.splice(taskIndex);
+      setTaskList([...list, taks]);
     }
-    setTaskList(list);
   })
 
   return (
