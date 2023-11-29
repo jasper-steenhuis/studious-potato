@@ -19,11 +19,15 @@ const ListInput = () =>{
   }
   
   const addTask = (e) =>{
-    setIndex(index=>index+1);
-    let newTask: task = {id: index , title: inputString, completed: false};
-    setTaskList([newTask, ...taskList]);
-    e.preventDefault();
-    setInput("");
+    if(inputString !== ''){
+      setIndex(index=>index+1);
+      let newTask: task = {id: index , title: inputString, completed: false};
+      setTaskList([newTask, ...taskList]);
+      e.preventDefault();
+      setInput("");
+    } 
+    else return;
+
   }
   const completeTask = (task => {
     const list = [...taskList];
