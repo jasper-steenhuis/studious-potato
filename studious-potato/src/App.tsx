@@ -39,10 +39,15 @@ const ListInput = () =>{
       setTaskList([...list, taks]);
     }
   })
+  const handleKeyPress = (e) => {
+    if(e.key === 'Enter'){
+      addTask(e);
+    }
+  }
 
   return (
     <div>
-        <input type="text" name="taskInput" value={inputString} placeholder="Enter taskname" onChange={handleChange}/>
+        <input type="text" name="taskInput" value={inputString} placeholder="Enter taskname" onChange={handleChange} onKeyUp={handleKeyPress}/>
         <button onClick={addTask}>Add</button>
         <ul>  
               {taskList.map(task => 
